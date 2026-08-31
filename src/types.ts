@@ -9,7 +9,7 @@ export type SubscriptionStatus =
     | "active"
     | "past_due"
     | "cancelled";
-    
+
 export interface Entitlements {
     exportCsv: boolean;
     auditLogs: boolean;
@@ -34,7 +34,19 @@ export interface Account {
     createdAt: Date;
     updatedAt: Date;
 }
+export interface LegacyAccountV1 {
+    _id: ObjectId;
+    name: string;
+    schemaVersion: 1;
 
+    plan: SubscriptionPlan;
+    active: boolean;
+
+    features: FeatureName[];
+
+    createdAt: Date;
+    updatedAt: Date;
+}
 export interface User {
     _id: ObjectId;
     email: string;
