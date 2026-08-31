@@ -4,7 +4,9 @@ import {
     closeDatabaseConnection,
     connectToDatabase
 } from "../src/db";
-
+import {
+    normalizeEmail
+} from "../src/normalization";
 import {
     Account,
     User
@@ -82,7 +84,7 @@ async function seed(): Promise<void> {
         const userData: User[] = [
             {
                 _id: new ObjectId(),
-                email: "maya@northstar.example",
+                email: normalizeEmail("maya@northstar.example"),
                 displayName: "Maya Patel",
                 accountId: freeAccountId,
                 status: "active",
@@ -90,7 +92,9 @@ async function seed(): Promise<void> {
             },
             {
                 _id: new ObjectId(),
-                email: "alex@acme.example",
+                email: normalizeEmail(
+                    "alex@acme.example"
+                ),
                 displayName: "Alex Morgan",
                 accountId: proAccountId,
                 status: "active",
@@ -98,7 +102,7 @@ async function seed(): Promise<void> {
             },
             {
                 _id: new ObjectId(),
-                email: "sam@acme.example",
+                email: normalizeEmail("sam@acme.example"),
                 displayName: "Sam Rivera",
                 accountId: proAccountId,
                 status: "active",
@@ -106,7 +110,7 @@ async function seed(): Promise<void> {
             },
             {
                 _id: new ObjectId(),
-                email: "jordan@vertex.example",
+                email: normalizeEmail("jordan@vertex.example"),
                 displayName: "Jordan Lee",
                 accountId: enterpriseAccountId,
                 status: "active",
@@ -114,7 +118,7 @@ async function seed(): Promise<void> {
             },
             {
                 _id: new ObjectId(),
-                email: "casey@vertex.example",
+                email: normalizeEmail("casey@vertex.example"),
                 displayName: "Casey Chen",
                 accountId: enterpriseAccountId,
                 status: "active",

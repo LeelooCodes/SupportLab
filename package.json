@@ -4,7 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/app.ts",
+    "seed": "tsx scripts/seed.ts",
+    "seed:incidents": "tsx scripts/seed-incidents.ts",
+    "query": "tsx scripts/query-demo.ts",
+    "fix:sup101": "tsx scripts/fix-sup101.ts",
+    "migrate:v1-v2": "tsx scripts/migrate-v1-to-v2.ts",
+    "migrate:v1-v2:dry": "tsx scripts/migrate-v1-to-v2.ts --dry-run",
+    "normalize:emails": "tsx scripts/normalize-user-emails.ts",
+    "normalize:emails:dry": "tsx scripts/normalize-user-emails.ts --dry-run",
+    "test": "tsx --test src/accessService.test.ts src/normalization.test.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +24,8 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongodb": "^7.6.0",
-    "pino": "^10.3.1"
+    "pino": "^10.3.1",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

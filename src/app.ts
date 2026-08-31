@@ -4,7 +4,9 @@ import express, {
     Request,
     Response
 } from "express";
-
+import {
+    normalizeEmail
+} from "./normalization";
 import {
     closeDatabaseConnection,
     connectToDatabase
@@ -66,7 +68,7 @@ async function main(): Promise<void> {
         async (req: Request<{email: string}>, res: Response) => {
             try {
                 const email =
-                    req.params.email.toLowerCase();
+                    normalizeEmail(req.params.email);
 
                 const users =
                     db.collection<User>("users");
@@ -129,7 +131,7 @@ async function main(): Promise<void> {
         async (req: Request<{email: string; feature: string}>, res: Response) => {
             try {
                 const email =
-                    req.params.email.toLowerCase();
+                    normalizeEmail(req.params.email);
 
                 const feature =
                     req.params.feature;

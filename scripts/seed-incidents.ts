@@ -7,7 +7,9 @@ import {
     closeDatabaseConnection,
     connectToDatabase
 } from "../src/db";
-
+import {
+    normalizeEmail
+} from "../src/normalization";
 import {
     Account,
     User
@@ -85,7 +87,9 @@ async function seedIncidents(): Promise<void> {
 
         await users.insertOne({
             _id: new ObjectId(),
-            email: "nina@bluepeak.example",
+            email: normalizeEmail(
+                "nina@bluepeak.example"
+            ),
             displayName: "Nina Foster",
             accountId: bluePeakId,
             status: "active",
@@ -116,7 +120,9 @@ async function seedIncidents(): Promise<void> {
 
         await users.insertOne({
             _id: new ObjectId(),
-            email: "robin@legacyworks.example",
+            email: normalizeEmail(
+                "robin@legacyworks.example"
+            ),
             displayName: "Robin Shaw",
             accountId: legacyWorksId,
             status: "active",
@@ -146,7 +152,9 @@ async function seedIncidents(): Promise<void> {
         await users.insertMany([
             {
                 _id: new ObjectId(),
-                email: "jamie@orbit.example",
+                email: normalizeEmail(
+                    "jamie@orbit.example"
+                ),
                 displayName: "Jamie Brooks",
                 accountId: orbitRetailId,
                 status: "active",
@@ -154,6 +162,8 @@ async function seedIncidents(): Promise<void> {
             },
             {
                 _id: new ObjectId(),
+                // Intentionally bypasses normal email canonicalisation
+                // to reproduce the historical SUP-104 data defect.
                 email: "Taylor@Orbit.Example",
                 displayName: "Taylor Grant",
                 accountId: orbitRetailId,
