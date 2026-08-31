@@ -16,7 +16,12 @@
   "normalize:emails:dry": "tsx scripts/normalize-user-emails.ts --dry-run",
   "health": "tsx scripts/account-health.ts",
   "test": "tsx --test src/accessService.test.ts src/normalization.test.ts",
-  "build": "tsc"
+  "build": "tsc",
+  "db:validation": "tsx scripts/apply-validation.ts",
+  "db:test-validation": "tsx scripts/test-database-validation.ts",
+  "db:audit-emails": "tsx scripts/audit-user-emails.ts",
+  "db:indexes": "tsx scripts/create-indexes.ts",
+  "db:test-unique-email": "tsx scripts/test-unique-email.ts"
 },
   "keywords": [],
   "author": "",
