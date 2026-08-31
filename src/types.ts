@@ -9,16 +9,15 @@ export type SubscriptionStatus =
     | "active"
     | "past_due"
     | "cancelled";
-export type FeatureName =
-    | "exportCsv"
-    | "auditLogs"
-    | "apiAccess";
     
 export interface Entitlements {
     exportCsv: boolean;
     auditLogs: boolean;
     apiAccess: boolean;
 }
+
+export type FeatureName =
+    keyof Entitlements;
 
 export interface Account {
     _id: ObjectId;

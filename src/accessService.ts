@@ -18,26 +18,11 @@ export interface AccessResult {
     user?: User;
     account?: Account;
 }
-function resolveEntitlement(
+export function resolveEntitlement(
     account: Account,
     feature: FeatureName
 ): boolean {
-    const {
-        exportCsv,
-        auditLogs,
-        apiAccess
-    } = account.entitlements;
-
-    const entitlementMap: Record<
-        FeatureName,
-        boolean
-    > = {
-        exportCsv,
-        auditLogs: apiAccess,
-        apiAccess
-    };
-
-    return entitlementMap[feature];
+    return account.entitlements[feature] === true;
 }
 export async function checkFeatureAccess(
     db: Db,
